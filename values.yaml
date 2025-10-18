@@ -42,7 +42,7 @@ autoscaling:
 
 virtualService:
   enabled: true
-  serviceName: light
+  name: light
   host: "*"
   gateway: ingressgateway
   prefix: /light
