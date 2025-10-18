@@ -13,6 +13,7 @@ public class LightConfiguration {
         httpSecurity
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/actuator/health/**").permitAll()
+                        .requestMatchers("/light/public").permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2-> oauth2
                         .jwt(jwt -> jwt
