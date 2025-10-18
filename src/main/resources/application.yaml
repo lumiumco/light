@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: "light"
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true

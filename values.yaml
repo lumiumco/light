@@ -1,0 +1,47 @@
+# Values for light service.
+
+replicaCount: 1
+
+image:
+  repository: lumiumco/light
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+nameOverride: "light"
+fullnameOverride: "light"
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: "light"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 5
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 5
+
+autoscaling:
+  enabled: false
+
+virtualService:
+  enabled: true
+  host: "*"
+  gateway: ingressgateway
+  prefix: /light
