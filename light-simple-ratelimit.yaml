@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: light-ratelimit
+  namespace: istio-system
+data:
+  light-ratelimit.yaml: |
+    domain: api
+    descriptors:
+      - key: path
+        value: /light*
+        rate_limit:
+          unit: minute
+          requests_per_unit: 3
