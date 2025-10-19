@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratelimit
+  namespace: istio-system
+spec:
+  template:
+    spec:
+      volumes:
+        - name: ratelimit-config-volume
+          projected:
+            sources:
+              - configMap:
+                  name: light-ratelimit
